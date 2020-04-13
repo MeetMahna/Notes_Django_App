@@ -1,0 +1,43 @@
+{% extends 'home/base.html' %}
+
+{% block title %}
+    View List
+{% endblock %}
+
+{% block content %}
+    <body style="background-image:url('https://images.unsplash.com/photo-1471107340929-a87cd0f5b5f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1932&q=80');
+    height: 95vh;
+    background-size: cover;
+    background-position: center;">
+	<br>
+	<h1><ul><font color="white"><li> {{ls.name}}</li></font></ul></h1>
+	<br>
+	<form method="post" action="#">
+		{% csrf_token %}
+		{% for item in ls.item_set.all %}
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<div class="input-group-text">
+					{% if item.complete == True %}
+						<input type="checkbox" value="clicked" name="c{{item.id}}" checked>
+					{% else %}
+						<input type="checkbox" value="clicked" name="c{{item.id}}">
+					{% endif %}
+				</div>
+			</div>
+			<input type="text" value="{{item.text}}" class="form-control">
+			<!button type="submit" name="d{{item.id}}" value="clicked" class="btn btn-success"><!Delete><!/button>
+
+		</div>
+		{% endfor %}
+
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<button onclick="home/abc" type="submit" name="newItem" value="newItem" class="btn btn-success">Add Item</button>
+			</div>
+			<input type="text" name="new">
+		</div>
+
+		<button type="submit" name="save" value="save" class="btn btn-success">Save</button>
+	</form>
+{% endblock %}

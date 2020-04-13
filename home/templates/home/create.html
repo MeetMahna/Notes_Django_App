@@ -1,0 +1,25 @@
+{% extends 'home/base.html' %}
+
+{% block title %}
+    Create New List
+{% endblock %}
+
+{% block content %}
+    <body style="background-image:url('https://images.unsplash.com/photo-1471107340929-a87cd0f5b5f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1932&q=80');
+    height: 95vh;
+    background-size: cover;
+    background-position: center;">
+    <br>
+    <h1><ul><font color="white"><li> Create a new note </li></font></ul></h1>
+    <br>
+    <h2><font color="white"> Title :</font></h2>
+    <form method="post" action="/home/create" class="form-group">
+         {% csrf_token %}
+         <div class="input-group mb-3">
+             <div class="input-group-prepend">
+                 <button type="submit" name="save" class="btn btn-success">Create New</button>
+             </div>{{form.name}}
+         </div>
+    </form>
+    </body>
+{% endblock %}
